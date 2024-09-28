@@ -20,7 +20,6 @@
 
         #countdown {
             text-align: center;
-            /* Nền trắng trong suốt */
             padding: 50px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -35,13 +34,13 @@
         #time {
             display: flex;
             justify-content: space-around;
-            flex-wrap: wrap; /* Cho phép nội dung tự xuống hàng nếu thiếu không gian */
+            flex-wrap: wrap;
         }
 
         #time div {
             font-size: 2rem;
             margin: 10px;
-            background-color: rgba(255, 255, 255, 0.8); /* Nền trong suốt hơn cho từng phần */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -51,11 +50,11 @@
 
         #time div span {
             font-size: 3rem;
-            color: #00fdd4; /* Thay đổi màu của số thành #00fdd4 */
+            color: #00fdd4;
         }
 
         #time div {
-            color: #000; /* Giữ nguyên màu gốc cho Ngày, Giờ, Phút, Giây */
+            color: #000;
         }
     </style>
 </head>
@@ -70,12 +69,16 @@
         </div>
     </div>
 
+    <!-- Thêm âm thanh vào trang bằng cách tải nhạc về rồi vào nhật kí tải xuống nhấn vào kí tự sao chép dán vào bên dưới-->
+    <audio id="tetSound" src="https://dl246.filemate29.shop/?file=M3R4SUNiN3JsOHJ6WWQ2a3NQS1Y5ZGlxVlZIOCtyZ2NqWkFabEZVQ1U2VUhxTWdNZzZINGNNUUVJS1lXaHMrQlJac05wSHY5SUpXcEVVcXJrSlp0UUhLT3ZOZzFzSHJzb01zQmVOdzZWVlBieUtPQ3hDUTlpZyt3WFl1SU41bFZKanhQNW1VeWxnU3lpZFB5clY2OWtDbm8vaDJNWWlOQjl4aGZlS3lBdExvWmtFdnFLdGF6eXR0T255T1M2NElIMStETzhnZi96N2NCcU4xaFZoa3hJYlpFMW8vaHl2TEo0QlUvallsUG54K0MrS2YwSU0wdEs0YWhTREppTVRBOHArTC9EMTBaeWlwRHprTDQ4N2MxNTNJTVphbDQ3VC9scnFDK00yL1BMWmFuQ1lLTk1PM2c4cFdzdXE4ejV3ZlNzTDdEbnNzPQ%3D%3D" preload="auto"></audio>
+
     <script>
         // Lấy các phần tử HTML để hiển thị thời gian
         const daysElement = document.getElementById("days");
         const hoursElement = document.getElementById("hours");
         const minutesElement = document.getElementById("minutes");
         const secondsElement = document.getElementById("seconds");
+        const tetSound = document.getElementById("tetSound");
 
         // Thiết lập ngày Tết Nguyên Đán 2025
         const tet2025 = new Date("January 29, 2025 00:00:00").getTime();
@@ -97,15 +100,22 @@
             minutesElement.innerHTML = minutes;
             secondsElement.innerHTML = seconds;
 
-            // Nếu đã đến Tết, dừng đếm ngược
+            // Nếu đã đến Tết, dừng đếm ngược và phát nhạc
             if (timeRemaining < 0) {
                 clearInterval(countdownInterval);
                 document.getElementById("countdown").innerHTML = "<h1>Chúc Mừng Năm Mới!</h1>";
+                tetSound.play(); // Phát âm thanh Tết
             }
         }
 
         // Gọi hàm updateCountdown mỗi giây
         const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Phát âm thanh ngay khi người dùng nhấp chuột
+        document.body.addEventListener('click', function() {
+            tetSound.play();
+        });
     </script>
 </body>
 </html>
+
