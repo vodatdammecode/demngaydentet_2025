@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đếm ngược đến Tết Nguyên Đán 2025</title>
+    <!-- Thêm Font Awesome để sử dụng biểu tượng lá thư -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,6 +58,93 @@
         #time div {
             color: #000;
         }
+
+        /* Phong cách cho chữ "Mở thư" */
+        #openText {
+            font-size: 1.2rem;
+            color: #d32f2f;
+            margin-bottom: 10px;
+        }
+
+        /* Phong cách cho nút biểu tượng lá thư */
+        #letterBtn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #letterBtn i {
+            font-size: 2rem;
+            color: #d32f2f;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hiệu ứng nổi khi rê chuột qua */
+        #letterBtn:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Hiệu ứng lật */
+        #letterBtn.active {
+            transform: rotateY(180deg);
+        }
+
+        #letterBtn.active i {
+            transform: rotateY(180deg);
+        }
+
+        /* Phong cách cho hộp thông báo lời chúc */
+        #messageBox {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(180deg);
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            z-index: 10;
+            animation: flip 0.6s forwards ease-in-out;
+        }
+
+        #messageBox h2 {
+            color: #d32f2f;
+        }
+
+        #messageBox p {
+            font-size: 1.2rem;
+        }
+
+        #messageBox button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #messageBox button:hover {
+            background-color: #c12727;
+        }
+
+        /* Hiệu ứng lật cho hộp thư */
+        @keyframes flip {
+            from {
+                transform: translate(-50%, -50%) rotateY(180deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotateY(0deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -67,9 +156,24 @@
             <div><span id="minutes"></span>Phút</div>
             <div><span id="seconds"></span>Giây</div>
         </div>
+
+        <!-- Dòng chữ "Mở thư" -->
+        <div id="openText"></div>
+
+        <!-- Nút biểu tượng lá thư -->
+        <div id="letterBtn">
+            <i class="fas fa-envelope"></i>
+        </div>
     </div>
 
-    <!-- Thêm âm thanh vào trang bằng cách tải nhạc về rồi vào nhật kí tải xuống nhấn vào kí tự sao chép dán vào bên dưới-->
+    <!-- Hộp thông báo lời chúc -->
+    <div id="messageBox">
+        <h2> Chúc Mừng Năm Mới!</h2>
+        <p>Chúc bạn và gia đình một năm mới an khang, thịnh vượng, vạn sự như ý!</p>
+        <button id="closeMessage">Đóng</button>
+    </div>
+
+    <!-- Thêm âm thanh vào trang -->
     <audio id="tetSound" src="https://dl246.filemate29.shop/?file=M3R4SUNiN3JsOHJ6WWQ2a3NQS1Y5ZGlxVlZIOCtyZ2NqWkFabEZVQ1U2VUhxTWdNZzZINGNNUUVJS1lXaHMrQlJac05wSHY5SUpXcEVVcXJrSlp0UUhLT3ZOZzFzSHJzb01zQmVOdzZWVlBieUtPQ3hDUTlpZyt3WFl1SU41bFZKanhQNW1VeWxnU3lpZFB5clY2OWtDbm8vaDJNWWlOQjl4aGZlS3lBdExvWmtFdnFLdGF6eXR0T255T1M2NElIMStETzhnZi96N2NCcU4xaFZoa3hJYlpFMW8vaHl2TEo0QlUvallsUG54K0MrS2YwSU0wdEs0YWhTREppTVRBOHArTC9EMTBaeWlwRHprTDQ4N2MxNTNJTVphbDQ3VC9scnFDK00yL1BMWmFuQ1lLTk1PM2c4cFdzdXE4ejV3ZlNzTDdEbnNzPQ%3D%3D" preload="auto"></audio>
 
     <script>
@@ -115,7 +219,20 @@
         document.body.addEventListener('click', function() {
             tetSound.play();
         });
+
+        // Hiển thị và đóng lời chúc, kèm theo hiệu ứng lật
+        const letterBtn = document.getElementById("letterBtn");
+        const messageBox = document.getElementById("messageBox");
+        const closeMessage = document.getElementById("closeMessage");
+
+        letterBtn.addEventListener('click', function() {
+            letterBtn.classList.toggle('active');
+            messageBox.style.display = 'block';
+        });
+
+        closeMessage.addEventListener('click', function() {
+            messageBox.style.display = 'none';
+        });
     </script>
 </body>
 </html>
-
