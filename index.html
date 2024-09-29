@@ -158,7 +158,7 @@
         </div>
 
         <!-- Dòng chữ "Mở thư" -->
-        <div id="openText"></div>
+        <div id="openText">Mở thư</div>
 
         <!-- Nút biểu tượng lá thư -->
         <div id="letterBtn">
@@ -168,13 +168,13 @@
 
     <!-- Hộp thông báo lời chúc -->
     <div id="messageBox">
-        <h2> Chúc Mừng Năm Mới!</h2>
+        <h2>Lời Chúc Mừng Năm Mới!</h2>
         <p>Chúc bạn và gia đình một năm mới an khang, thịnh vượng, vạn sự như ý!</p>
         <button id="closeMessage">Đóng</button>
     </div>
 
     <!-- Thêm âm thanh vào trang -->
-    <audio id="tetSound" src="https://dl246.filemate29.shop/?file=M3R4SUNiN3JsOHJ6WWQ2a3NQS1Y5ZGlxVlZIOCtyZ2NqWkFabEZVQ1U2VUhxTWdNZzZINGNNUUVJS1lXaHMrQlJac05wSHY5SUpXcEVVcXJrSlp0UUhLT3ZOZzFzSHJzb01zQmVOdzZWVlBieUtPQ3hDUTlpZyt3WFl1SU41bFZKanhQNW1VeWxnU3lpZFB5clY2OWtDbm8vaDJNWWlOQjl4aGZlS3lBdExvWmtFdnFLdGF6eXR0T255T1M2NElIMStETzhnZi96N2NCcU4xaFZoa3hJYlpFMW8vaHl2TEo0QlUvallsUG54K0MrS2YwSU0wdEs0YWhTREppTVRBOHArTC9EMTBaeWlwRHprTDQ4N2MxNTNJTVphbDQ3VC9scnFDK00yL1BMWmFuQ1lLTk1PM2c4cFdzdXE4ejV3ZlNzTDdEbnNzPQ%3D%3D" preload="auto"></audio>
+    <audio id="tetSound" src="https://dl246.filemate22.shop/?file=M3R4SUNiN3JsOHJ6WWQ2a3NQS1Y5ZGlxVlZIOCtyZ2NqWkFabEZVQ1U2VUhxTWdNZzZINGNNUUVJS1lXaHMrQlJac05wSHY5SUpXcEVVcXJrSlp0UUhLT3ZOZzFzSHJzb01zQmVOdzZWVlBieUtPQ3hDUTlpZyt3WFl1SU41bFZKanhQNW1VeWxnU3lpZFB5clY2OWtDbm8vaDJNWWlOQjl4aGZlS3lBdExvWmtFdnFLdGF6eXR0T255T1M2NElIMStETzhnZi96N2NCcU4xaFZoa3hJYlpFMW8vaHl2TEo0QlUvallsUG54K0MrS2YwSU0wdEs0YWhTREppTVRBOHArTC9EMTBaeWlwRHprTDQ4N2MxNTNJTVphbDQ3VC9scnFDK01HN0pMWlNuQ1lLTk1PM2c4cFdzdXE4ejV3ZlNzTDdEbnNzPQ%3D%3D" preload="auto"></audio>
 
     <script>
         // Lấy các phần tử HTML để hiển thị thời gian
@@ -217,7 +217,9 @@
 
         // Phát âm thanh ngay khi người dùng nhấp chuột
         document.body.addEventListener('click', function() {
-            tetSound.play();
+            tetSound.play().catch(error => {
+                console.log("Âm thanh chỉ phát sau khi có tương tác từ người dùng:", error);
+            });
         });
 
         // Hiển thị và đóng lời chúc, kèm theo hiệu ứng lật
